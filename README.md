@@ -1,3 +1,3 @@
-= Expenses
+# Expenses
 
-An app for tracking our home expenses.
+Expenses is an Go app for tracking our home expenses.
