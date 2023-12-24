@@ -1,0 +1,123 @@
+swagger: "2.0"
+info:
+    title: Home expenses service
+    description: Service for home expenses
+    version: ""
+host: localhost:8000
+consumes:
+    - application/json
+    - application/xml
+    - application/gob
+produces:
+    - application/json
+    - application/xml
+    - application/gob
+paths:
+    /openapi.json:
+        get:
+            tags:
+                - transactions
+            summary: Download ./gen/http/openapi.json
+            operationId: transactions#/openapi.json
+            responses:
+                "200":
+                    description: File downloaded
+                    schema:
+                        type: file
+            schemes:
+                - http
+    /transactions:
+        get:
+            tags:
+                - transactions
+            summary: transactions transactions
+            description: List all transactions.
+            operationId: transactions#transactions
+            responses:
+                "200":
+                    description: OK response.
+                    schema:
+                        $ref: '#/definitions/TransactionsTransactionCollection'
+                    headers:
+                        marker:
+                            description: Pagination marker
+                            type: string
+            schemes:
+                - http
+definitions:
+    Transaction:
+        title: 'Mediatype identifier: application/vnd.goa.djjuhasz.transaction; view=default'
+        type: object
+        properties:
+            account:
+                type: string
+                description: Account name.
+                example: Nobis aut aut quam facilis deleniti.
+            amount:
+                type: number
+                description: Dollar amount.
+                example: 0.45067835
+                format: float
+            category:
+                type: string
+                description: Category.
+                example: Dolores doloribus.
+            cheque_no:
+                type: integer
+                description: Cheque number.
+                example: 2828632263090861873
+                format: int64
+            date_posted:
+                type: string
+                description: Date posted.
+                example: Rerum consequatur est.
+            id:
+                type: string
+                description: Identifier.
+                example: Consequatur nam maiores.
+            notes:
+                type: string
+                description: Notes.
+                example: Amet ex eum.
+            payee:
+                type: string
+                description: Payee name.
+                example: Expedita et.
+        description: Transaction result type (default view)
+        example:
+            account: Labore vitae magni voluptate fugiat repellat dolor.
+            amount: 0.2859435
+            category: Voluptas qui facere non.
+            cheque_no: 1265469709762741796
+            date_posted: Iusto qui fugit in consequatur repellendus numquam.
+            id: Omnis minima.
+            notes: Labore sit cum velit eum reprehenderit.
+            payee: Ut aliquid ut quaerat.
+        required:
+            - id
+            - date_posted
+            - category
+            - amount
+    TransactionsTransactionCollection:
+        title: 'Mediatype identifier: application/vnd.goa.djjuhasz.transaction; type=collection; view=default'
+        type: array
+        items:
+            $ref: '#/definitions/Transaction'
+        description: TransactionCollection is the result type for an array of Transaction (default view)
+        example:
+            - account: A ipsa.
+              amount: 0.030701216
+              category: Recusandae exercitationem accusantium aperiam et dolore.
+              cheque_no: 5566082317846022660
+              date_posted: Qui aut est atque.
+              id: Illum omnis provident omnis.
+              notes: Occaecati sapiente aperiam assumenda.
+              payee: Tenetur est quod.
+            - account: A ipsa.
+              amount: 0.030701216
+              category: Recusandae exercitationem accusantium aperiam et dolore.
+              cheque_no: 5566082317846022660
+              date_posted: Qui aut est atque.
+              id: Illum omnis provident omnis.
+              notes: Occaecati sapiente aperiam assumenda.
+              payee: Tenetur est quod.
